@@ -1,29 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Pressable, TextInput } from 'react-native';
 import {flatListArray} from "./array"
 
 export default function App(props) {
-  const [variable, setVariable] = useState("hola")
-
-  const funcion = () => {
-    setVariable("hola 2")
-  }
-
-  useEffect(() => {
-    console.log(flatListArray)
-    return () => console.log("desmontado")
-  }, [])
-
-  useEffect(() => {
-    console.log("cambio variable ", variable)
-    return () => console.log("desmontado")
-  }, [variable])
+  const [number, onChangeNumber] = React.useState(null);
 
   return (
     <View style={styles.container}>
-      <Text>{variable}</Text>
-      <Pressable style={{padding: 10, backgroundColor:"red" }} onPress={() => funcion()}><Text>Cambiar</Text></Pressable>
+      <Text>HOLA</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="telefono"
+        keyboardType="numeric"
+        textContentType="password"
+        secureTextEntry="true"
+      />
+      <Pressable style={{padding: 10, backgroundColor:"red" }} onPress={() => undefined}><Text>Cambiar</Text></Pressable>
       <StatusBar style="auto" />
     </View>
   );
@@ -35,5 +30,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    width: '80%'
   },
 });
